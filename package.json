@@ -17,7 +17,6 @@
     "pubsub"
   ],
   "devDependencies": {
-    "@rollup/plugin-buble": "^0.20.0",
     "@types/jest": "^24.0.23",
     "jest": "^24.9.0",
     "rimraf": "^3.0.0",
@@ -31,7 +30,7 @@
     "test": "jest --ci --no-watchman",
     "build": "yarn clean && yarn typings && yarn bundle && yarn minify",
     "clean": "rimraf dist index.d.ts",
-    "typings": "yarn tsc --declaration --emitDeclarationOnly --outDir .",
+    "typings": "yarn tsc src/index.ts --declaration --emitDeclarationOnly --outDir .",
     "bundle": "rollup --config",
     "minify": "uglifyjs dist/umd.js --compress --mangle --output dist/umd.min.js"
   }
