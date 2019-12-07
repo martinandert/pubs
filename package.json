@@ -1,6 +1,6 @@
 {
   "name": "pubs",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Publish and subscribe.",
   "main": "dist/cjs.js",
   "browser": "dist/umd.js",
