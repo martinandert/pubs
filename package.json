@@ -1,0 +1,38 @@
+{
+  "name": "pubs",
+  "version": "0.0.0",
+  "description": "Publish and subscribe.",
+  "main": "dist/cjs.js",
+  "browser": "dist/umd.js",
+  "module": "dist/esm.mjs",
+  "unpkg": "dist/umd.js",
+  "types": "index.d.ts",
+  "sideEffects": false,
+  "author": "Martin Andert",
+  "repository": "martinandert/inflected",
+  "license": "MIT",
+  "keywords": [
+    "publish",
+    "subscribe",
+    "pubsub"
+  ],
+  "devDependencies": {
+    "@rollup/plugin-buble": "^0.20.0",
+    "@types/jest": "^24.0.23",
+    "jest": "^24.9.0",
+    "rimraf": "^3.0.0",
+    "rollup": "^1.27.8",
+    "rollup-plugin-typescript2": "^0.25.3",
+    "ts-jest": "^24.2.0",
+    "typescript": "^3.7.3",
+    "uglify-js": "^3.7.1"
+  },
+  "scripts": {
+    "test": "jest --ci --no-watchman",
+    "build": "yarn clean && yarn typings && yarn bundle && yarn minify",
+    "clean": "rimraf dist index.d.ts",
+    "typings": "yarn tsc --declaration --emitDeclarationOnly --outDir .",
+    "bundle": "rollup --config",
+    "minify": "uglifyjs dist/umd.js --compress --mangle --output dist/umd.min.js"
+  }
+}
