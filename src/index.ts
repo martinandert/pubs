@@ -29,12 +29,12 @@ export function create<T, A extends any[] = [T]>(
 }
 
 type Next = () => void;
-type CallbackWithNext<T> = (next: Next, data: T) => void;
+type ChainedCallback<T> = (next: Next, data: T) => void;
 
-export function createWithNext<T, A extends any[] = [T]>(
+export function createChained<T, A extends any[] = [T]>(
   buildData: (...args: A) => T = identity,
 ) {
-  const subscribers: CallbackWithNext<T>[] = [];
+  const subscribers: ChainedCallback<T>[] = [];
 
   function publish(done: Next, ...args: A) {
     const data = buildData(...args);
@@ -47,7 +47,7 @@ export function createWithNext<T, A extends any[] = [T]>(
     run();
   }
 
-  function subscribe(callback: CallbackWithNext<T>) {
+  function subscribe(callback: ChainedCallback<T>) {
     subscribers.push(callback);
 
     const index = subscribers.length - 1;

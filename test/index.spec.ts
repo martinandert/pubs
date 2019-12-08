@@ -1,4 +1,4 @@
-import { create, createWithNext } from "../src/index";
+import { create, createChained } from "../src/index";
 
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -34,10 +34,10 @@ describe("create", () => {
   });
 });
 
-describe("createWithNext", () => {
+describe("createChained", () => {
   // eslint-disable-next-line jest/expect-expect
   it("works without subscribers", (done) => {
-    const [pub] = createWithNext<void>();
+    const [pub] = createChained<void>();
 
     pub(done);
   });
@@ -45,7 +45,7 @@ describe("createWithNext", () => {
   it("works with subscribers", (done) => {
     const result: any[] = [];
 
-    const [pub, sub] = createWithNext<number>();
+    const [pub, sub] = createChained<number>();
 
     sub(async (next, data) => {
       await sleep(1);
